@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS-Digital Clock</title>
+    <style type="text/css">
+        body
+        {
+            background: linear-gradient(to right,#e66465, #9198e5);
+            
+        }
+
+        .clock {
+
+
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translateX(-50%) translateY(-50%);
+            color: aqua;
+            font-size: 80px;
+            border: 5px solid rgb(250, 129, 15);
+            border-radius: 40px;
+            padding: 0px 5px 0px 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="MyClockDisplay" class="clock">
+    </div>
+    <script type="text/javascript">
+        function showTime() {
+            var date = new Date();
+            var h = date.getHours(); //0-23
+            var m = date.getMinutes();//0-59
+            var s = date.getSeconds();//0-59
+            var session = "AM"
+
+            if (h == 0) {
+                h = 12;
+            }
+            if (h > 12) {
+                h = h - 12;
+                session = "PM";
+            }
+            /*if(h<10){
+                h="0"+h;
+            }
+            if(m<10){
+                m="0"+m;
+            }
+            if(s<10){
+                s="0"+s;
+            }*/                 //Instead of writing this we can also write it in simple way
+            h = (h < 10) ? "0" + h : h;
+            m = (m < 10) ? "0" + m : m;
+            s = (s < 10) ? "0" + s : s;
+
+            var time = h + ":" + m + ":" + s + " " + session;
+            document.getElementById("MyClockDisplay").innerText = time;
+            document.getElementById("MyClockDisplay").textContent = time;
+            setTimeout(showTime, 1000);
+        }
+        //setInterval(showTime,1000);//it will call the given method in a specified time
+        showTime();
+    </script>
+</body>
+
+</html>
